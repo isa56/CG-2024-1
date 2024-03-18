@@ -1,12 +1,12 @@
 import * as THREE from  'three';
-import { OrbitControls } from '../build/jsm/controls/OrbitControls.js';
+import { OrbitControls } from '../../build/jsm/controls/OrbitControls.js';
 import {initRenderer, 
         initCamera,
         initDefaultBasicLight,
         setDefaultMaterial,
         InfoBox,
         onWindowResize,
-        createGroundPlaneXZ} from "../libs/util/util.js";
+        createGroundPlaneXZ} from "../../libs/util/util.js";
 
 let scene, renderer, camera, material, light, orbit;; // Initial variables
 scene = new THREE.Scene();    // Create main scene
@@ -28,25 +28,33 @@ let plane = createGroundPlaneXZ(20, 20)
 scene.add(plane);
 
 
-//////////////////////////////////  EXERCÍCIOS 02 //////////////////////////////////
+//////////////////////////////////  EXERCÍCIOS 03 //////////////////////////////////
 
-const cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
-const cube = new THREE.Mesh(cubeGeometry, setDefaultMaterial('rgb(62, 166, 46)'));
-cube.position.set(0.0, 2.0, 0.0);
-scene.add(cube);
+function randomizeColor() {
+    return Math.floor(Math.random() * 255);
+}
 
-const sphereGeometry = new THREE.SphereGeometry(2);
-const sphere = new THREE.Mesh(sphereGeometry, setDefaultMaterial('rgb(200, 50, 166)'));
-sphere.position.set(6.0, 1.9, 0.0);
-scene.add(sphere);
+function createAndPositionCube(positionX = 0, positionY = 0, positionZ = 0) {
+    const cubeGeometry = new THREE.BoxGeometry(3, 3, 3);
+    const cube = new THREE.Mesh(cubeGeometry, setDefaultMaterial(`rgb(${randomizeColor()}, ${randomizeColor()}, ${randomizeColor()})`));
+    cube.position.set(positionX, positionY, positionZ);
+    scene.add(cube);
+}
 
-const cylinderGeometry = new THREE.CylinderGeometry(2, 2, 4);
-const cylinder = new THREE.Mesh(cylinderGeometry, setDefaultMaterial('rgb(48, 63, 166)'));
-cylinder.position.set(-6.0, 2.0, 0.0);
-scene.add(cylinder);
+let posX = -4;
+let posZ = -4;
+
+for (let i = 0; i < 3; i++) {
+    let posX = -4;
+    for (let j = 0; j < 3; j++) {
+        createAndPositionCube(posX, 1.5, posZ);
+        posX += 4;
+    }
+    posZ += 4;
+}
 
 
-///////////////////////////////// FIM EXERCÍCIOS 02 /////////////////////////////////
+///////////////////////////////// FIM EXERCÍCIOS 03 /////////////////////////////////
 
 render();
 function render()
