@@ -35,6 +35,22 @@ cube.position.set(0.0, 2.0, 0.0);
 // add the cube to the scene
 scene.add(cube);
 
+//////////////////////////////////  EXERCÍCIOS 01 //////////////////////////////////
+
+const cubeGeometry2 = new THREE.BoxGeometry(3, 3, 3);
+const cube2 = new THREE.Mesh(cubeGeometry2, setDefaultMaterial('rgb(120, 22, 72)'));
+cube2.position.set(5.0, 1.5, 3.0);
+scene.add(cube2);
+
+const cubeGeometry3 = new THREE.BoxGeometry(0.35, 0.35, 0.35);
+const cube3 = new THREE.Mesh(cubeGeometry3, setDefaultMaterial('rgb(88, 22, 250)'));
+cube3.position.set(-8.0, 0.175, -8.0);
+scene.add(cube3);
+
+
+///////////////////////////////// FIM EXERCÍCIOS 01 /////////////////////////////////
+
+
 // Use this to show information onscreen
 let controls = new InfoBox();
   controls.add("Basic Scene");
